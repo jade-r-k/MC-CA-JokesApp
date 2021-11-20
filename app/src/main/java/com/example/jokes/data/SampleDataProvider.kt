@@ -11,14 +11,10 @@ class SampleDataProvider {
 
         private val sampleCategory = "Misc"
 
-        private fun getDate(diff: Long): Date {
-            return Date(Date().time + diff)
-        }
-
         fun getJokes() = arrayListOf(
-            JokeEntity(0, getDate(0), sampleCategory, sampleText1),
-            JokeEntity(1, getDate(0), sampleCategory, sampleText2),
-            JokeEntity(2, getDate(0), sampleCategory, sampleText3)
+            JokeEntity(0, sampleCategory, sampleText1),
+            JokeEntity(1, sampleCategory, sampleText2),
+            JokeEntity(2, sampleCategory, sampleText3)
         )
 
     }

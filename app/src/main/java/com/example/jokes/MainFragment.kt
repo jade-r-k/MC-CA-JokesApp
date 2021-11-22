@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.jokes.databinding.MainFragmentBinding
@@ -46,6 +47,8 @@ NotesListAdapter.ListItemListener{
 
     override fun onItemClick(jokeId: Int) {
         Log.i(TAG, "onItemClick: received joke id $jokeId")
+        val action = MainFragmentDirections.actionViewJoke(jokeId)
+        findNavController().navigate(action)
     }
 
 }

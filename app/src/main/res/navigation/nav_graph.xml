@@ -21,5 +21,10 @@
         android:id="@+id/detailFragment"
         android:name="com.example.jokes.DetailFragment"
         android:label="detail_fragment"
-        tools:layout="@layout/detail_fragment" />
+        tools:layout="@layout/detail_fragment" >
+        <argument
+            android:name="jokeId"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
 </navigation>

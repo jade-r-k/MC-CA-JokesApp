@@ -12,7 +12,8 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.jokes.databinding.MainFragmentBinding
 
-class MainFragment : Fragment() {
+class MainFragment : Fragment(),
+NotesListAdapter.ListItemListener{
 
     private lateinit var viewModel: MainViewModel
     private lateinit var binding: MainFragmentBinding
@@ -34,13 +35,17 @@ class MainFragment : Fragment() {
         }
 
         viewModel.notesList.observe(viewLifecycleOwner, Observer {
-            Log.i("noteLogging", it.toString())
-            adapter = NotesListAdapter(it)
+            Log.i(TAG, it.toString())
+            adapter = NotesListAdapter(it, this@MainFragment)
             binding.recyclerView.adapter = adapter
             binding.recyclerView.layoutManager = LinearLayoutManager(activity)
         })
 
         return binding.root
+    }
+
+    override fun onItemClick(jokeId: Int) {
+        Log.i(TAG, "onItemClick: received joke id $jokeId")
     }
 
 }

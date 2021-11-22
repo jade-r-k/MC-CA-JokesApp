@@ -1,13 +1,16 @@
 package com.example.jokes
 
 import android.view.LayoutInflater
+import android.view.OnReceiveContentListener
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.jokes.data.JokeEntity
 import com.example.jokes.databinding.ListItemBinding
 
-class NotesListAdapter(private val notesList: List<JokeEntity>) :
+class NotesListAdapter(private val notesList: List<JokeEntity>,
+private val listener: ListItemListener) :
+
     RecyclerView.Adapter<NotesListAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) :
@@ -25,7 +28,14 @@ class NotesListAdapter(private val notesList: List<JokeEntity>) :
         val joke = notesList[position]
         with(holder.binding) {
             jokeText.text = joke.Joke
+            root.setOnClickListener{
+                listener.onItemClick(joke.id)
+            }
         }
+    }
+
+    interface ListItemListener {
+        fun onItemClick (jokeId: Int)
     }
 
     override fun getItemCount() = notesList.size

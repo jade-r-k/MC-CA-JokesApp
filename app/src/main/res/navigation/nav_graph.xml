@@ -5,9 +5,21 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/mainFragment">
 
+    <!-- Main Fragment -->
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.example.jokes.MainFragment"
         android:label="main_fragment"
-        tools:layout="@layout/main_fragment" />
+        tools:layout="@layout/main_fragment" >
+        <!-- Action to go to Detail Fragment -->
+        <action
+            android:id="@+id/action_view_joke"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <!-- Detail Fragment -->
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.jokes.DetailFragment"
+        android:label="detail_fragment"
+        tools:layout="@layout/detail_fragment" />
 </navigation>

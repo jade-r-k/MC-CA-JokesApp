@@ -20,4 +20,7 @@ interface JokeDao {
 
     @Query("SELECT * FROM jokes WHERE id = :id")
     fun getJokeById(id: Int):JokeEntity?
+
+    @Query("SELECT COUNT(*) FROM jokes")
+    fun getCount(): Int
 }

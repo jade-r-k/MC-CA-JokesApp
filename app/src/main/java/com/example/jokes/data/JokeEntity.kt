@@ -1,9 +1,13 @@
 package com.example.jokes.data
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.example.jokes.NEW_JOKE_ID
 import java.util.*
 
+@Entity(tableName = "jokes")
 data class JokeEntity(
+    @PrimaryKey(autoGenerate = true)
     var id: Int,
     var Category: String,
     var Joke: String

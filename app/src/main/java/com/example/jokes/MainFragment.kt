@@ -2,9 +2,7 @@ package com.example.jokes
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -15,18 +13,20 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.jokes.databinding.MainFragmentBinding
 
 class MainFragment : Fragment(),
-NotesListAdapter.ListItemListener{
+JokesListAdapter.ListItemListener{
 
     private lateinit var viewModel: MainViewModel
     private lateinit var binding: MainFragmentBinding
-    private lateinit var adapter: NotesListAdapter
+    private lateinit var adapter: JokesListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        (activity as AppCompatActivity)
+            .supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        setHasOptionsMenu(true)
 
         binding = MainFragmentBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
@@ -39,14 +39,31 @@ NotesListAdapter.ListItemListener{
             addItemDecoration(divider)
         }
 
-        viewModel.notesList.observe(viewLifecycleOwner, Observer {
+        viewModel.jokesList?.observe(viewLifecycleOwner, Observer {
             Log.i(TAG, it.toString())
-            adapter = NotesListAdapter(it, this@MainFragment)
+            adapter = JokesListAdapter(it, this@MainFragment)
             binding.recyclerView.adapter = adapter
             binding.recyclerView.layoutManager = LinearLayoutManager(activity)
         })
 
         return binding.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_main, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_random_jokes -> addRandomJoke()
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun addRandomJoke(): Boolean {
+        viewModel.randomJokes()
+        return true
     }
 
     override fun onItemClick(jokeId: Int) {

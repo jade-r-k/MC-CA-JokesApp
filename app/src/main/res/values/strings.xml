@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Jokes</string>
     <string name="random_jokes">Random Jokes</string>
+    <string name="delete">Delete</string>
 </resources>

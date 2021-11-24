@@ -12,9 +12,9 @@ class SampleDataProvider {
         private val sampleCategory = "Misc"
 
         fun getJokes() = arrayListOf(
-            JokeEntity(1, sampleCategory, sampleText1),
-            JokeEntity(2, sampleCategory, sampleText2),
-            JokeEntity(3, sampleCategory, sampleText3)
+            JokeEntity(sampleCategory, sampleText1),
+            JokeEntity(sampleCategory, sampleText2),
+            JokeEntity(sampleCategory, sampleText3)
         )
 
     }

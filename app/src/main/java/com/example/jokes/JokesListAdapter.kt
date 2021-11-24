@@ -12,6 +12,8 @@ class JokesListAdapter(private val jokesList: List<JokeEntity>,
 
     RecyclerView.Adapter<JokesListAdapter.ViewHolder>() {
 
+    val selectedJokes = arrayListOf<JokeEntity>()
+
     inner class ViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
         val binding = ListItemBinding.bind(itemView)
@@ -30,11 +32,29 @@ class JokesListAdapter(private val jokesList: List<JokeEntity>,
             root.setOnClickListener{
                 listener.onItemClick(joke.id)
             }
+            fab.setOnClickListener{
+                if (selectedJokes.contains(joke)) {
+                    selectedJokes.remove(joke)
+                    fab.setImageResource(R.drawable.ic_jokes)
+                }else {
+                    selectedJokes.add(joke)
+                    fab.setImageResource(R.drawable.ic_check)
+                }
+                listener.onItemSelectionChanged()
+            }
+            fab.setImageResource(
+                if (selectedJokes.contains(joke)) {
+                    R.drawable.ic_check
+                } else {
+                    R.drawable.ic_jokes
+                }
+            )
         }
     }
 
     interface ListItemListener {
         fun onItemClick (jokeId: Int)
+        fun onItemSelectionChanged()
     }
 
     override fun getItemCount() = jokesList.size

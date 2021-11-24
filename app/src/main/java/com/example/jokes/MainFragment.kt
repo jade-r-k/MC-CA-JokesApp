@@ -50,7 +50,15 @@ JokesListAdapter.ListItemListener{
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_main, menu)
+        val menuId =
+            if (this::adapter.isInitialized &&
+                    adapter.selectedJokes.isNotEmpty()) {
+                R.menu.menu_main_selected_items
+            } else {
+                R.menu.menu_main
+            }
+
+        inflater.inflate(menuId, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
 
@@ -70,6 +78,10 @@ JokesListAdapter.ListItemListener{
         Log.i(TAG, "onItemClick: received joke id $jokeId")
         val action = MainFragmentDirections.actionViewJoke(jokeId)
         findNavController().navigate(action)
+    }
+
+    override fun onItemSelectionChanged() {
+        requireActivity().invalidateOptionsMenu()
     }
 
 }

@@ -2,8 +2,6 @@ package com.example.jokes
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.jokes.data.AppDatabase
 import com.example.jokes.data.JokeEntity
@@ -23,6 +21,14 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
             withContext(Dispatchers.IO) {
                 val sampleJokes = SampleDataProvider.getJokes()
                 database?.jokeDao()?.insertAll(sampleJokes)
+            }
+        }
+    }
+
+    fun deleteJokes(selectedJokes: List<JokeEntity>) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                database?.jokeDao()?.deleteJokes(selectedJokes)
             }
         }
     }

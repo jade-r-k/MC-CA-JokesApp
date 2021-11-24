@@ -1,10 +1,7 @@
 package com.example.jokes.data
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 
 @Dao
 interface JokeDao {
@@ -23,4 +20,7 @@ interface JokeDao {
 
     @Query("SELECT COUNT(*) FROM jokes")
     fun getCount(): Int
+
+    @Delete
+    fun deleteJokes(selectedJokes: List<JokeEntity>): Int
 }

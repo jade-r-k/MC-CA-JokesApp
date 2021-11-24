@@ -1,6 +1,8 @@
 package com.example.jokes
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
@@ -65,8 +67,19 @@ JokesListAdapter.ListItemListener{
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_random_jokes -> addRandomJoke()
+            R.id.action_delete -> deleteSelectedJokes()
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun deleteSelectedJokes(): Boolean {
+        viewModel.deleteJokes(adapter.selectedJokes)
+        Handler(Looper.getMainLooper()).postDelayed({
+            adapter.selectedJokes.clear()
+            requireActivity().invalidateOptionsMenu()
+        },100)
+        return true
+
     }
 
     private fun addRandomJoke(): Boolean {

@@ -67,7 +67,7 @@ JokesListAdapter.ListItemListener{
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.action_random_jokes -> addRandomJoke()
+            R.id.action_random_jokes -> getJokes()
             R.id.action_delete -> deleteSelectedJokes()
             else -> super.onOptionsItemSelected(item)
         }

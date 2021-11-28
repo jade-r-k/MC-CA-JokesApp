@@ -28,7 +28,7 @@ class JokesListAdapter(private val jokesList: List<JokeEntity>,
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val joke = jokesList[position]
         with(holder.binding) {
-            jokeText.text = joke.Joke
+            jokeText.text = joke.joke
             root.setOnClickListener{
                 listener.onItemClick(joke.id)
             }

@@ -36,9 +36,11 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
 
     fun getJokes() {
         viewModelScope.launch {
-            val fetchedJokes = RetrofitInstance.api.getJokes()
-            Log.i(TAG, "Fetched jokes: $fetchedJokes")
-            //database?.jokeDao()?.insertAll(fetchedJokes.jokes)
+            withContext(Dispatchers.IO) {
+                val fetchedJokes = RetrofitInstance.api.getJokes()
+                Log.i(TAG, "Fetched jokes: $fetchedJokes")
+                database?.jokeDao()?.insertAll(fetchedJokes.jokes as ArrayList<JokeEntity>)
+            }
         }
     }
 

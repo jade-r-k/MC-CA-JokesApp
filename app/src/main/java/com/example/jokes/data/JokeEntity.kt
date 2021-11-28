@@ -9,8 +9,8 @@ import java.util.*
 data class JokeEntity(
     @PrimaryKey(autoGenerate = true)
     var id: Int,
-    var Category: String,
-    var Joke: String
+    var category: String,
+    var joke: String
 ) {
     constructor() : this(NEW_JOKE_ID, "", "")
     constructor(category: String, joke: String) : this(

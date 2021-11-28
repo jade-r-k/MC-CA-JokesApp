@@ -10,7 +10,7 @@ interface JokeDao {
     fun insertJoke(joke: JokeEntity)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insertAll(jokes: List<JokeEntity>)
+    fun insertAll(jokes: ArrayList<JokeEntity>)
 
     @Query("SELECT * FROM jokes ORDER BY id ASC")
     fun getAll(): LiveData<List<JokeEntity>>

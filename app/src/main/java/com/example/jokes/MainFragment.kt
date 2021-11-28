@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.jokes.databinding.MainFragmentBinding
+import com.example.jokes.models.Joke
 
 class MainFragment : Fragment(),
 JokesListAdapter.ListItemListener{
@@ -84,6 +85,11 @@ JokesListAdapter.ListItemListener{
 
     private fun addRandomJoke(): Boolean {
         viewModel.randomJokes()
+        return true
+    }
+
+    private fun getJokes(): Boolean {
+        viewModel.getJokes()
         return true
     }
 

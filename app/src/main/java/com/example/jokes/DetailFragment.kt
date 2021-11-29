@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.jokes.databinding.DetailFragmentBinding
@@ -33,8 +34,10 @@ class DetailFragment : Fragment() {
         }
         setHasOptionsMenu(true)
 
+        viewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
+
         binding = DetailFragmentBinding.inflate(inflater, container, false)
-        binding.jokeText.setText("You selected joke number ${args.jokeId}")
+        binding.jokeText.setText("")
 
         requireActivity().onBackPressedDispatcher.addCallback(
             viewLifecycleOwner,
@@ -44,6 +47,12 @@ class DetailFragment : Fragment() {
                 }
             }
         )
+
+        viewModel.currentJoke.observe(viewLifecycleOwner, Observer {
+            binding.jokeText.setText("Category: "+it.category + "\n\n" + it.joke)
+        })
+        viewModel.getJokeById(args.jokeId)
+
 
         return binding.root
     }
@@ -59,11 +68,6 @@ class DetailFragment : Fragment() {
         findNavController().navigateUp()
 
         return true
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
     }
 
 }

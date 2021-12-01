@@ -1,5 +1,7 @@
 package com.example.jokes.data
 
+//CRUD
+
 import androidx.lifecycle.LiveData
 import androidx.room.*
 

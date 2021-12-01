@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Custom layout for items in the list -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <!-- Button for selecting -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="72dp"
@@ -19,6 +21,7 @@
         app:srcCompat="@drawable/ic_jokes"
         tools:ignore="VectorDrawableCompat" />
 
+    <!-- Joke text -->
     <TextView
         android:id="@+id/jokeText"
         android:layout_width="0dp"

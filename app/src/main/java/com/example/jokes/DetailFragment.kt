@@ -64,6 +64,7 @@ class DetailFragment : Fragment() {
         }
     }
 
+    //return to previous fragment
     private fun saveAndReturn(): Boolean {
         findNavController().navigateUp()
 

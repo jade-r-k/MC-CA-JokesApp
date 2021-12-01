@@ -1,5 +1,7 @@
 package com.example.jokes.data
 
+//Sample data for database
+
 import java.util.*
 
 class SampleDataProvider {

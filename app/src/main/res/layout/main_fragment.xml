@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".MainFragment">
 
+    <!-- Recycler View -->
+    <!-- displays data in list or grid -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="0dp"

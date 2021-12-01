@@ -42,6 +42,7 @@ JokesListAdapter.ListItemListener{
             addItemDecoration(divider)
         }
 
+        //Display in activity
         viewModel.jokesList?.observe(viewLifecycleOwner, Observer {
             Log.i(TAG, it.toString())
             adapter = JokesListAdapter(it, this@MainFragment)
@@ -93,6 +94,7 @@ JokesListAdapter.ListItemListener{
         return true
     }
 
+    //Goes to detail fragment with joke id when joke is clicked
     override fun onItemClick(jokeId: Int) {
         Log.i(TAG, "onItemClick: received joke id $jokeId")
         val action = MainFragmentDirections.actionViewJoke(jokeId)

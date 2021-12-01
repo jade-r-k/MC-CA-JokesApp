@@ -1,5 +1,7 @@
 package com.example.jokes
 
+//Manages data at run time
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,17 +16,20 @@ class JokesListAdapter(private val jokesList: List<JokeEntity>,
 
     val selectedJokes = arrayListOf<JokeEntity>()
 
+    //access to views
     inner class ViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
         val binding = ListItemBinding.bind(itemView)
     }
 
+    //called when a new list item is generated
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.list_item, parent, false)
         return ViewHolder(view)
     }
 
+    //called each time data is passed
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val joke = jokesList[position]
         with(holder.binding) {
@@ -32,6 +37,7 @@ class JokesListAdapter(private val jokesList: List<JokeEntity>,
             root.setOnClickListener{
                 listener.onItemClick(joke.id)
             }
+            //When joke is clicked
             fab.setOnClickListener{
                 if (selectedJokes.contains(joke)) {
                     selectedJokes.remove(joke)
@@ -42,6 +48,7 @@ class JokesListAdapter(private val jokesList: List<JokeEntity>,
                 }
                 listener.onItemSelectionChanged()
             }
+            //When joke is selected
             fab.setImageResource(
                 if (selectedJokes.contains(joke)) {
                     R.drawable.ic_check
@@ -52,6 +59,7 @@ class JokesListAdapter(private val jokesList: List<JokeEntity>,
         }
     }
 
+    //Listens for when joke is clicked
     interface ListItemListener {
         fun onItemClick (jokeId: Int)
         fun onItemSelectionChanged()

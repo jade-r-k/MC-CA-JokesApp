@@ -22,6 +22,7 @@
         android:name="com.example.jokes.DetailFragment"
         android:label="detail_fragment"
         tools:layout="@layout/detail_fragment" >
+        <!-- Takes Joke id -->
         <argument
             android:name="jokeId"
             app:argType="integer"

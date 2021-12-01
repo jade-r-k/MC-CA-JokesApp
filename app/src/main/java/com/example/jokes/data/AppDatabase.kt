@@ -10,6 +10,7 @@ abstract class AppDatabase: RoomDatabase() {
 
     abstract fun jokeDao(): JokeDao?
 
+    //initialise database
     companion object {
         private var INSTANCE: AppDatabase? = null
 

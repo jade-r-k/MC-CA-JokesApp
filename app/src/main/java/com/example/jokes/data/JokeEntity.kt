@@ -1,5 +1,7 @@
 package com.example.jokes.data
 
+//Joke properties and constructors
+
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.jokes.NEW_JOKE_ID

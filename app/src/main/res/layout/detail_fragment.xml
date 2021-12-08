@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".DetailFragment">
 
+    <!-- Displays joke text -->
     <TextView
         android:id="@+id/joke_text"
         android:layout_width="match_parent"

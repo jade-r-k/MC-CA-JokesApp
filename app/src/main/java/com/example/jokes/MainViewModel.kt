@@ -25,6 +25,7 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
 
     val jokesList = database?.jokeDao()?.getAll()
 
+    //Adds jokes from sample data
     fun randomJokes() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
@@ -34,6 +35,7 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
         }
     }
 
+    //When random jokes menu option is clicked, gets random jokes from API and inserts them into database
     fun getJokes() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
@@ -44,6 +46,7 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
         }
     }
 
+    //Deletes selected jokes
     fun deleteJokes(selectedJokes: List<JokeEntity>) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {

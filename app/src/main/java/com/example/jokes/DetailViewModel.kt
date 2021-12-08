@@ -14,6 +14,7 @@ class DetailViewModel(app: Application) : AndroidViewModel(app) {
    private val database = AppDatabase.getInstance(app)
     val currentJoke = MutableLiveData<JokeEntity>()
 
+    //Gets joke by id and displays selected joke
     fun getJokeById(jokeId: Int) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {

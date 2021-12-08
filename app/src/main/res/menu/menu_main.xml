@@ -2,6 +2,7 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- Random jokes menu item -->
     <item
         android:id="@+id/action_random_jokes"
         android:title="@string/random_jokes" />

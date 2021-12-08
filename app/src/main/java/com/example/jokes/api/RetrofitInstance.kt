@@ -4,6 +4,7 @@ import com.squareup.moshi.Moshi
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
+//Retrofit to retrieve data from api
 private const val BASE_URL = "https://v2.jokeapi.dev/joke/"
 object RetrofitInstance {
     private val retrofit by lazy {
